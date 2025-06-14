@@ -1,0 +1,139 @@
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-blue-800 to-indigo-900 text-white py-32 px-6">
+  <div class="absolute inset-0 bg-black opacity-30"></div>
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6">Quiénes Somos</h1>
+
+    <p class="text-xl md:text-2xl opacity-90">Conoce más sobre nuestra empresa, valores y lo que nos hace diferentes</p>
+  </div>
+</section>
+
+<!-- Company Info Section -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <!-- Video de YouTube -->
+      <div class="mb-12 rounded-xl overflow-hidden shadow-lg">
+        <div class="aspect-w-16 aspect-h-9">
+          <iframe
+            class="w-full h-96"
+            [src]="safeVideoUrl"
+            title="Video institucional de la empresa"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-12 border-l-4 border-indigo-600">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Nuestra Empresa</h2>
+        <div class="flex flex-row items-center">
+        <p class="text-gray-700 leading-relaxed">{{ companyInfo.description }}</p>
+         <img src="images/logo.png" alt="" class="flex justify-center text-center">
+
+        </div>
+
+      </div>
+
+      <!-- Legal Structure -->
+      <div class="bg-gray-50 rounded-xl shadow-lg p-8 mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Estructura Legal</h2>
+        <p class="text-gray-700 mb-4">
+          La estructura legal de {{ companyInfo.name }} es una <span class="font-semibold text-indigo-700">{{ companyInfo.legalStructure }}</span>.
+          Esta forma jurídica ofrece importantes ventajas:
+        </p>
+        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+          <li *ngFor="let advantage of companyInfo.legalAdvantages">{{ advantage }}</li>
+        </ul>
+      </div>
+
+      <!-- Mission & Vision -->
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-indigo-50 rounded-xl p-8 border border-indigo-100">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-600 text-white p-3 rounded-full mr-4">
+              <i class="fas fa-bullseye text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">Misión</h3>
+          </div>
+          <p class="text-gray-700">{{ companyInfo.mission }}</p>
+        </div>
+
+        <div class="bg-blue-50 rounded-xl p-8 border border-blue-100">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-600 text-white p-3 rounded-full mr-4">
+              <i class="fas fa-eye text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800">Visión</h3>
+          </div>
+          <p class="text-gray-700">{{ companyInfo.vision }}</p>
+        </div>
+      </div>
+
+      <!-- FODA Analysis -->
+      <div class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Análisis Estratégico FODA</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Fortalezas -->
+          <div class="bg-green-50 rounded-xl p-6 border-l-4 border-green-500">
+            <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center">
+              <i class="fas fa-thumbs-up mr-2"></i> Fortalezas
+            </h3>
+            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+              <li *ngFor="let item of companyInfo.foda.fortalezas">{{ item }}</li>
+            </ul>
+          </div>
+
+          <!-- Oportunidades -->
+          <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center">
+              <i class="fas fa-lightbulb mr-2"></i> Oportunidades
+            </h3>
+            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+              <li *ngFor="let item of companyInfo.foda.oportunidades">{{ item }}</li>
+            </ul>
+          </div>
+
+          <!-- Debilidades -->
+          <div class="bg-yellow-50 rounded-xl p-6 border-l-4 border-yellow-500">
+            <h3 class="text-xl font-bold text-yellow-800 mb-4 flex items-center">
+              <i class="fas fa-exclamation-triangle mr-2"></i> Debilidades
+            </h3>
+            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+              <li *ngFor="let item of companyInfo.foda.debilidades">{{ item }}</li>
+            </ul>
+          </div>
+
+          <!-- Amenazas -->
+          <div class="bg-red-50 rounded-xl p-6 border-l-4 border-red-500">
+            <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center">
+              <i class="fas fa-shield-alt mr-2"></i> Amenazas
+            </h3>
+            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+              <li *ngFor="let item of companyInfo.foda.amenazas">{{ item }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Nuestros Valores Corporativos</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div *ngFor="let value of companyInfo.values" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-check"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800">{{ value.name }}</h3>
+            </div>
+            <p class="text-gray-600">{{ value.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

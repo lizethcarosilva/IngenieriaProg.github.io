@@ -1,0 +1,81 @@
+<nav class="fixed top-0 left-0 h-screen bg-gradient-to-b from-blue-600 to-blue-800 shadow-lg z-50 transition-all duration-300"
+     [class.w-64]="!isCollapsed || isHovered"
+     [class.w-20]="isCollapsed && !isHovered"
+     (mouseenter)="isBrowser && !isMobile && (isHovered = true)"
+     (mouseleave)="isBrowser && !isMobile && (isHovered = false)">
+
+  <!-- Encabezado del menú -->
+  <div class="flex items-center h-16 px-4 border-b border-white/10">
+    <div class="flex items-center justify-center w-10 h-10 bg-white rounded-full text-blue-600 font-bold text-lg mr-4 shrink-0">IP</div>
+    <span class="text-white font-medium whitespace-nowrap" *ngIf="!isCollapsed || isHovered">IngenieriaProg</span>
+  </div>
+
+  <!-- Items del menú -->
+  <div class="h-[calc(100vh-4rem)] overflow-y-auto py-2">
+    <!-- Item Inicio -->
+    <a (click)="navigate('/inicio')"
+       class="flex items-center mx-2 px-4 py-3 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer"
+       [class.bg-white-10]="router.url === '/inicio'">
+      <span class="material-icons mr-4">home</span>
+      <span *ngIf="!isCollapsed || isHovered">Inicio</span>
+    </a>
+
+    <!-- Item Quiénes Somos -->
+    <a (click)="navigate('/quienes-somos')"
+       class="flex items-center mx-2 px-4 py-3 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer"
+       [class.bg-white-10]="router.url === '/quienes-somos'">
+      <span class="material-icons mr-4">people</span>
+      <span *ngIf="!isCollapsed || isHovered">Quiénes Somos</span>
+    </a>
+
+    <!-- Item Producto con submenú -->
+    <div class="relative">
+      <div (click)="toggleProductoSubmenu($event)"
+           class="flex items-center mx-2 px-4 py-3 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer"
+           [class.bg-white-10]="router.url.includes('/producto')">
+        <span class="material-icons mr-4">shopping_cart</span>
+        <span *ngIf="!isCollapsed || isHovered">Producto</span>
+        <span class="material-icons absolute right-3 transition-transform duration-200"
+              [class.rotate-180]="showProductoSubmenu">expand_more</span>
+      </div>
+
+      <!-- Submenú de Producto -->
+      <div class="overflow-hidden transition-all duration-200"
+           [class.max-h-0]="!showProductoSubmenu"
+           [class.max-h-96]="showProductoSubmenu">
+        <!-- Ruta principal de Producto -->
+        <a (click)="navigate('/producto')"
+           class="flex items-center ml-12 mr-2 px-4 py-2 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer border-l-2 border-white/20 hover:border-white"
+           [class.bg-white-10]="router.url === '/producto'">
+          <span *ngIf="!isCollapsed || isHovered">Página Principal</span>
+        </a>
+
+        <!-- Subitems -->
+        <a (click)="navigate('/fuerzas-porter')"
+           class="flex items-center ml-12 mr-2 px-4 py-2 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer border-l-2 border-white/20 hover:border-white"
+           [class.bg-white-10]="router.url === '/fuerzas-porter'">
+          <span *ngIf="!isCollapsed || isHovered">Fuerzas de Porter</span>
+        </a>
+
+        <a (click)="navigate('/plan-accion')"
+           class="flex items-center ml-12 mr-2 px-4 py-2 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer border-l-2 border-white/20 hover:border-white"
+           [class.bg-white-10]="router.url === '/plan-accion'">
+          <span *ngIf="!isCollapsed || isHovered">Plan de Acción</span>
+        </a>
+
+        <a (click)="navigate('/kpis')"
+           class="flex items-center ml-12 mr-2 px-4 py-2 rounded-md text-white/80 hover:bg-white/5 transition-colors cursor-pointer border-l-2 border-white/20 hover:border-white"
+           [class.bg-white-10]="router.url === '/kpis'">
+          <span *ngIf="!isCollapsed || isHovered">KPIs</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Botón Hamburguesa (solo móvil) -->
+<button *ngIf="isBrowser && isMobile"
+        class="fixed top-4 left-4 z-40 bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
+        (click)="toggleMenu()">
+  <span class="material-icons">menu</span>
+</button>
