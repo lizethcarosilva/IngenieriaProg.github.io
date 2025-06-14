@@ -6,7 +6,7 @@
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-      "deploy": "ng build --prod --base-href=/IngenieriaProg/ && ngh --dir=dist/IngenieriaProg/browser",
+    "deploy": "ng build --configuration=production --base-href=/IngenieriaProg/ && echo '' > dist/IngenieriaProg/browser/.nojekyll && npx angular-cli-ghpages --dir=dist/IngenieriaProg/browser",
     "clean:full": "npm run clean && npm cache clean --force && npm install",
     "build:ssr": "ng build && ng run IngenieriaProg:server:production",
     "serve:ssr": "node dist/IngenieriaProg/server/main.js",
