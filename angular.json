@@ -52,14 +52,9 @@
                 "output": "/"
               },
               {
-                "glob": "**/*.html",
-                "input": "src/app",
-                "output": "app"
-              },
-              {
-                "glob": "**/*.component.ts",
-                "input": "src/app",
-                "output": "app"
+                "glob": "**/*.{html,scss,css,ts}",
+                "input": "src/app/Components",
+                "output": "/"
               },
               "src/favicon.ico",
               "src/assets"
