@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GlobalMenuComponent } from "./global-menu/global-menu.component";
+import { GlobalMenuComponent } from "./Components/global-menu/global-menu.component";
 
 @Component({
   selector: 'app-root',

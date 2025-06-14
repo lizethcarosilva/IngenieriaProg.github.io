@@ -46,6 +46,9 @@
             "polyfills": "zone.js",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "baseHref": "/IngenieriaProg/",
+            "deployUrl": "/IngenieriaProg/",
+
             "assets": [{
                 "glob": "**/*",
                 "input": "public",
