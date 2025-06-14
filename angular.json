@@ -46,15 +46,21 @@
             "polyfills": "zone.js",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [{
+            "assets": [
+              {
                 "glob": "**/*",
                 "input": "public",
                 "output": "/"
               },
               {
-                "glob": "**/*.{html,scss,css,ts}",
-                "input": "src/app/Components",
-                "output": "/"
+                "glob": "**/*.html",
+                "input": "src/app",
+                "output": "app"
+              },
+              {
+                "glob": "**/*.component.ts",
+                "input": "src/app",
+                "output": "app"
               },
               "src/favicon.ico",
               "src/assets"
@@ -64,16 +70,19 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "700kb",
                   "maximumError": "1mb"
@@ -122,7 +131,8 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
 
-            "assets": [{
+            "assets": [
+              {
                 "glob": "**/*",
                 "input": "public"
               },
