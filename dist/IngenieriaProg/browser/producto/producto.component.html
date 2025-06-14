@@ -1,0 +1,196 @@
+<div class="flex min-h-screen">
+  <!-- Contenido principal -->
+  <div class="flex-1">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-indigo-800 to-blue-900 text-white py-32 px-6">
+      <div class="absolute inset-0 bg-black opacity-30"></div>
+      <div class="relative z-10 max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ productInfo.name }}</h1>
+        <p class="text-xl md:text-2xl opacity-90">Seguridad inteligente para tu familia y comunidad</p>
+      </div>
+    </section>
+
+    <!-- Router outlet para rutas hijas -->
+    <router-outlet></router-outlet>
+
+    <!-- Contenido principal del producto -->
+    <section *ngIf="isMainRoute()" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <!-- Sección de pantallas de la aplicación -->
+        <div class="max-w-6xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Funcionalidades Clave</h2>
+
+          <!-- Login -->
+          <div class="mb-12 bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:flex">
+              <div class="md:w-1/2 p-6 flex items-center justify-center bg-gray-50">
+                <img src="images/login.png" alt="Pantalla de Login" class="max-h-96 rounded-lg shadow">
+              </div>
+              <div class="md:w-1/2 p-8">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Acceso Seguro</h3>
+                <p class="text-gray-700 mb-4">Sistema de autenticación robusto para proteger tu información:</p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                  <li>Registro con múltiples opciones (email, teléfono, redes sociales)</li>
+                  <li>Autenticación de dos factores</li>
+                  <li>Encriptación de extremo a extremo</li>
+                  <li>Personalización de perfil de usuario</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Geolocalización Inteligente -->
+          <div class="mb-12 bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:flex md:flex-row-reverse">
+              <div class="md:w-1/2 p-6 flex items-center justify-center bg-gray-50">
+                <img src="images/geolocalizacion.png" alt="Geolocalización" class="max-h-96 rounded-lg shadow">
+              </div>
+              <div class="md:w-1/2 p-8">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Geolocalización Inteligente</h3>
+                <p class="text-gray-700 mb-4">Sistema de rastreo preciso y configurable:</p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                  <li>Ubicación en tiempo real con actualizaciones cada 30 segundos</li>
+                  <li>Configuración de zonas seguras con geovallas</li>
+                  <li>Historial de rutas con fechas y horas</li>
+                  <li>Alertas automáticas por salida de zona o inactividad</li>
+                  <li>Modo bajo consumo de batería</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plataforma de Seguridad Colaborativa -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-semibold text-indigo-700 mb-6 text-center">Plataforma de Seguridad Colaborativa</h3>
+
+            <!-- Botón de Pánico -->
+            <div class="mb-8 bg-white rounded-xl shadow-lg overflow-hidden">
+              <div class="md:flex">
+                <div class="md:w-1/2 p-6 flex items-center justify-center bg-red-50">
+                  <img src="images/panico.png" alt="Botón de Pánico" class="max-h-96 rounded-lg shadow">
+                </div>
+                <div class="md:w-1/2 p-8">
+                  <h4 class="text-xl font-semibold text-red-600 mb-4">Botón de Pánico</h4>
+                  <p class="text-gray-700 mb-4">Activación inmediata en situaciones de emergencia:</p>
+                  <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                    <li>Activación con un solo toque o combinación de botones</li>
+                    <li>Notificación inmediata a contactos de emergencia</li>
+                    <li>Alerta a autoridades locales (si está configurado)</li>
+                    <li>Envío automático de ubicación y datos del usuario</li>
+                    <li>Grabación de audio ambiente automática</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mapa de Incidentes -->
+            <div class="mb-8 bg-white rounded-xl shadow-lg overflow-hidden">
+              <div class="md:flex md:flex-row-reverse">
+                <div class="md:w-1/2 p-6 flex items-center justify-center bg-blue-50">
+                  <img src="images/incidentes.png" alt="Mapa de Incidentes" class="max-h-96 rounded-lg shadow">
+                </div>
+                <div class="md:w-1/2 p-8">
+                  <h4 class="text-xl font-semibold text-blue-600 mb-4">Mapa de Incidentes</h4>
+                  <p class="text-gray-700 mb-4">Visualización comunitaria de situaciones de riesgo:</p>
+                  <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                    <li>Reportes verificados por la comunidad</li>
+                    <li>Filtros por tipo de incidente (robo, accidente, etc.)</li>
+                    <li>Notificaciones de incidentes cercanos</li>
+                    <li>Historial de incidentes por zona</li>
+                    <li>Integración con reportes oficiales</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chat Comunitario -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div class="md:flex">
+                <div class="md:w-1/2 p-6 flex items-center justify-center bg-green-50">
+                  <img src="images/chat.png" alt="Chat Comunitario" class="max-h-96 rounded-lg shadow">
+                </div>
+                <div class="md:w-1/2 p-8">
+                  <h4 class="text-xl font-semibold text-green-600 mb-4">Chat Comunitario</h4>
+                  <p class="text-gray-700 mb-4">Comunicación en tiempo real con tu comunidad:</p>
+                  <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                    <li>Grupos por vecindarios o zonas de interés</li>
+                    <li>Mensajes con verificación de identidad</li>
+                    <li>Compartir ubicación en tiempo real</li>
+                    <li>Alertas comunitarias prioritarias</li>
+                    <li>Moderación automática y manual</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción del producto -->
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 mb-12">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">¿Qué es {{ productInfo.name }}?</h2>
+          <p class="text-gray-700 leading-relaxed mb-6">{{ productInfo.description }}</p>
+
+
+        </div>
+
+        <!-- Contexto -->
+        <div class="max-w-4xl mx-auto bg-blue-50 rounded-xl shadow-lg p-8 mb-12 border-l-4 border-blue-600">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">¿Por qué {{ productInfo.name }} en Colombia?</h2>
+          <p class="text-gray-700 leading-relaxed">{{ productInfo.context }}</p>
+        </div>
+
+        <!-- Precios -->
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 mb-12">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Modelo de Negocio</h2>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+              <thead class="bg-indigo-600 text-white">
+                <tr>
+                  <th class="py-3 px-4 text-left">Tipo de usuario</th>
+                  <th class="py-3 px-4 text-left">Plan básico</th>
+                  <th class="py-3 px-4 text-left">Plan con GPS</th>
+                  <th class="py-3 px-4 text-left">Costo dispositivo</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr *ngFor="let plan of productInfo.pricing" class="hover:bg-gray-50">
+                  <td class="py-4 px-4 font-medium">{{ plan.userType }}</td>
+                  <td class="py-4 px-4">{{ plan.basicPlan }}</td>
+                  <td class="py-4 px-4">{{ plan.gpsPlan }}</td>
+                  <td class="py-4 px-4">{{ plan.deviceCost }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Diferenciadores -->
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">¿Qué nos hace diferentes?</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-gray-50 rounded-lg p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Comparación con apps en Colombia</h3>
+              <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                <li *ngFor="let app of productInfo.differentiators.localApps">{{ app }}</li>
+              </ul>
+            </div>
+
+            <div class="bg-gray-50 rounded-lg p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Comparación con apps internacionales</h3>
+              <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                <li *ngFor="let app of productInfo.differentiators.internationalApps">{{ app }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50 rounded-lg p-6 border border-indigo-100">
+            <h3 class="text-xl font-semibold text-indigo-700 mb-3">Nuestra ventaja competitiva</h3>
+            <p class="text-gray-700">{{ productInfo.differentiators.uniqueFeatures }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
