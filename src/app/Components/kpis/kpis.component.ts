@@ -52,6 +52,7 @@ interface Kpi {
   selector: 'app-kpis',
   templateUrl: './kpis.component.html',
   imports: [CommonModule, RouterModule, NgChartsModule, NgFor],
+  
   styleUrls: ['./kpis.component.scss'],
   standalone: true
 })

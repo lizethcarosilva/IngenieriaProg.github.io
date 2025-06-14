@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-producto',
   imports: [CommonModule, RouterModule, MatIconModule],
-  
+   standalone: true,
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.scss']
 })

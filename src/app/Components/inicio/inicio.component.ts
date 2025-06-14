@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
   selector: 'app-inicio',
   imports: [CommonModule, RouterModule],
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  styleUrls: ['./inicio.component.scss'],
+   standalone: true,
 })
 export class InicioComponent {
   teamMembers = [
@@ -14,7 +15,7 @@ export class InicioComponent {
       name: 'Lizeth Andrea Caro Silva',
       code: '085450372022',
       position: 'Desarrolladora Front-End',
-      image: 'images/FOTOLIZETHGRIS.jpg',
+      image: '/images/FOTOLIZETHGRIS.jpg',
       bio: 'Especialista en Angular y diseño de interfaces de usuario'
     },
     {

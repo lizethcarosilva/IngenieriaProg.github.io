@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-plan-accion',
   templateUrl: './plan-accion.component.html',
      imports: [CommonModule, RouterModule],
+      standalone: true,
   styleUrls: ['./plan-accion.component.scss']
 })
 export class PlanAccionComponent {

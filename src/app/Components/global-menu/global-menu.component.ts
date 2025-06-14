@@ -7,6 +7,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-global-menu',
   templateUrl: './global-menu.component.html',
   styleUrls: ['./global-menu.component.scss'],
+  standalone: true,
   imports: [NgIf]
 })
 export class GlobalMenuComponent {
