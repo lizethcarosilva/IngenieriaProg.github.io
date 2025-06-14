@@ -1,0 +1,147 @@
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-green-700 to-green-900 text-white py-24 px-4">
+  <div class="container mx-auto text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">Monitoreo de Resultados y KPIs</h1>
+    <p class="text-xl">Indicadores clave para medir el éxito de SeguriApp</p>
+  </div>
+</section>
+
+<!-- Content Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <!-- Financial KPIs -->
+    <div class="mb-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">KPIs Financieros</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div *ngFor="let kpi of kpis.financial" class="bg-white rounded-xl shadow-md p-6 border-t-4 border-green-600">
+          <h3 class="text-xl font-bold text-gray-800 mb-3">{{ kpi.name }}</h3>
+          <p class="text-gray-600 mb-4">{{ kpi.description }}</p>
+          <p class="font-mono bg-gray-100 p-2 rounded mb-4 text-sm">{{ kpi.formula }}</p>
+
+          <!-- Gráfico de evolución -->
+          <div class="h-48 mb-4">
+            <canvas
+              [id]="generateChartId(kpi.name)"
+              baseChart
+              [type]="'line'"
+              [data]="getChartData(kpi.data, kpi.name)"
+              [options]="chartOptions">
+            </canvas>
+          </div>
+
+          <h4 class="font-semibold mb-2">Evolución:</h4>
+          <ul class="space-y-2">
+            <li *ngFor="let item of kpi.data" class="flex justify-between border-b border-gray-100 pb-1">
+              <span>{{ item['month'] }}</span>
+              <span class="font-medium">{{ item['value'] }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Operational KPIs -->
+    <div class="mb-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">KPIs Operativos</h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div *ngFor="let kpi of kpis.operational" class="bg-white rounded-xl shadow-md p-6 border-t-4 border-blue-600">
+          <h3 class="text-xl font-bold text-gray-800 mb-3">{{ kpi.name }}</h3>
+          <p class="text-gray-600 mb-4">{{ kpi.description }}</p>
+
+          <!-- Gráfico para KPIs operativos -->
+          <div class="h-64 mb-6">
+            <canvas
+               [id]="generateChartId(kpi.name)"
+              baseChart
+              [type]="getChartType(kpi.type)"
+              [data]="getChartData(kpi.data, kpi.name)"
+              [options]="chartOptions">
+            </canvas>
+          </div>
+
+          <div class="overflow-x-auto">
+            <ng-container [ngSwitch]="kpi.type">
+              <!-- Users Table -->
+              <table *ngSwitchCase="'users'" class="min-w-full">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuarios</th>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr *ngFor="let item of getDataForTable(kpi.data)">
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['month'] }}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['users'] }}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['total'] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Alerts Table -->
+              <table *ngSwitchCase="'alerts'" class="min-w-full">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tiempo</th>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Alertas</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr *ngFor="let item of getDataForTable(kpi.data)">
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['month'] }}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['time'] }}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['alerts'] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Satisfaction Table -->
+              <table *ngSwitchCase="'satisfaction'" class="min-w-full">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pregunta</th>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Satisfechos</th>
+                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr *ngFor="let item of getDataForTable(kpi.data)">
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['question'] }}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['satisfied'] }}</td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{{ item['total'] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">Herramientas de Monitoreo</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div *ngFor="let tool of kpis.tools" class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="w-20 h-20 mb-4 flex items-center justify-center">
+            <img [src]="'images/tools/' + tool.image" [alt]="tool.name" class="max-h-full max-w-full">
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 text-center">{{ tool.name }}</h3>
+          <p class="text-gray-600 text-center mt-2">{{ tool.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a routerLink="/producto"
+        class="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+        Volver al Producto
+      </a>
+    </div>
+  </div>
+</section>
