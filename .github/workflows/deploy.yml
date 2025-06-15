@@ -2,11 +2,7 @@ name: Deploy Angular App
 
 on:
   push:
-<<<<<<< HEAD
     branches: [master]
-=======
-    branches: [ master ]
->>>>>>> a09bd9343c3a6029c9170ea279601f2c3f93d232
 
 jobs:
   deploy:
@@ -15,25 +11,16 @@ jobs:
       contents: write
       pages: write
       id-token: write
-<<<<<<< HEAD
 
     steps:
       - uses: actions/checkout@v4
 
-=======
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
->>>>>>> a09bd9343c3a6029c9170ea279601f2c3f93d232
       - name: Build with Docker
         run: |
           docker build -t angular-app .
           docker create --name app-container angular-app
           docker cp app-container:/usr/share/nginx/html ./dist
           docker rm app-container
-<<<<<<< HEAD
           ls -la ./dist  # Verifica los archivos
 
       - name: Setup Pages
@@ -46,16 +33,3 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-=======
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4  # Actualizado a v4
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3  # Versión actualizada
-        with:
-          path: './site'
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4  # Actualizado a v4
->>>>>>> a09bd9343c3a6029c9170ea279601f2c3f93d232
