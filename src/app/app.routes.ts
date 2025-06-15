@@ -8,14 +8,14 @@ import { PlanAccionComponent } from './Components/plan-accion/plan-accion.compon
 import { KpisComponent } from './Components/kpis/kpis.component';
 
 export const routes: Routes = [
-  { path: "", redirectTo: "/inicio", pathMatch: "full" },
+  { path: "", component: InicioComponent, pathMatch: "full" },
   { path: "inicio", component: InicioComponent },
   { path: 'quienes-somos', component: QuienesSomosComponent },
   { path: 'producto', component: ProductoComponent },
   { path: 'fuerzas-porter', component: FuerzasPorterComponent },
   { path: 'plan-accion', component: PlanAccionComponent },
   { path: 'kpis', component: KpisComponent },
-  { path: "**", redirectTo: "/inicio" } // Manejo de rutas no encontradas
+  { path: "**", component: InicioComponent },// Manejo de rutas no encontradas
 ];
 
 @NgModule({
