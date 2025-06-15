@@ -70,7 +70,7 @@ export class PlanAccionComponent {
       initial: '$28.650 M COP',
       monthly: '$1.650 M COP/mes',
       details: [
-        'Equipo GPS: $1.50.000 COP inicial',
+        'Equipo GPS: $150.000 COP inicial',
         'Mensualidades GPS: $55.000 (Niños/Mascotas) - 75.000 (Vehiculos) COP/mes',
         'Desarrollo tecnológico: $7 M COP',
         'Marketing: $20 M COP'
