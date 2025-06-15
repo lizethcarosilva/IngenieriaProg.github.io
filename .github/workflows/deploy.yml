@@ -1,19 +1,35 @@
-name: Deploy to GitHub Pages
+name: Deploy Angular App
+
 on:
   push:
-    branches: [ master ]  # Asegúrate que diga master (no main)
+    branches: [master]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Build with Docker
         run: |
-          docker build -t app .
-          docker create --name app-container app
-          docker cp app-container:/usr/share/nginx/html ./site
+          docker build -t angular-app .
+          docker create --name app-container angular-app
+          docker cp app-container:/usr/share/nginx/html ./dist
           docker rm app-container
-      - uses: peaceiris/actions-gh-pages@v3
+          ls -la ./dist  # Verifica los archivos
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
