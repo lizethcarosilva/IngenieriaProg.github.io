@@ -51,13 +51,13 @@ export class ProductoComponent {
       },
       {
         userType: 'Mascotas',
-        basicPlan: 'Gratis (solo mapa y alertas)',
+        basicPlan: 'Gratis (funciones limitadas)',
         gpsPlan: '$55.000 COP/mes',
         deviceCost: '$150.000 COP'
       },
       {
         userType: 'Vehículos',
-        basicPlan: 'Gratis (solo comunidad)',
+        basicPlan: 'Gratis (funciones limitadas)',
         gpsPlan: '$75.000-90.000 COP/mes',
         deviceCost: '$150.000-200.000 COP'
       }
